@@ -36,7 +36,7 @@ class CurrencyConverterAPI(BaseRapidAPITool):
 
         # print(self.query_string)
 
-        response = requests.get(self.url, headers=headers, params=self.query_string).json()
+        response = requests.get(self.url, headers=headers, params=self.query_string, timeout=60).json()
 
         result = self.parse_result(response)
         return result
