@@ -43,7 +43,7 @@ class BingSearch(BaseTool):
         response = self._bing_search_results(query, count=self.k)
         result = self.parse_result(response)
         return result
-    
+
     def parse_result(self, response):
         snippets = []
         if len(response) == 0:
@@ -52,5 +52,3 @@ class BingSearch(BaseTool):
             snippets.append(result["snippet"])
 
         return " ".join(snippets)
-
-    
