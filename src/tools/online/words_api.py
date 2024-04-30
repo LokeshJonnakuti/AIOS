@@ -1,14 +1,11 @@
 from src.tools.base import BaseRapidAPITool
 
-from typing import Any, Dict, List, Optional
-
 # from pydantic import root_validator
 
 from src.utils.utils import get_from_env
 
-import requests
-
 import os
+from security import safe_requests
 
 class WordsAPI(BaseRapidAPITool):
     def __init__(self):
@@ -32,7 +29,7 @@ class WordsAPI(BaseRapidAPITool):
             )
         self.url = os.path.join(self.url, self.word, self.api_name)
 
-        response = requests.get(self.url, headers=headers).json()
+        response = safe_requests.get(self.url, headers=headers).json()
         result = self.parse_result(response)
         return result
 

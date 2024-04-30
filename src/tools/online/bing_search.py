@@ -1,12 +1,11 @@
-from typing import Dict, List
-
-import requests
+from typing import List
 
 from src.tools.base import BaseTool
 
 # from pydantic import root_validator
 
 from src.utils.utils import get_from_env
+from security import safe_requests
 
 class BingSearch(BaseTool):
     """Bing Search Tool, refactored from langchain.
@@ -29,8 +28,7 @@ class BingSearch(BaseTool):
             "textFormat": "HTML",
             # **self.search_kwargs,
         }
-        response = requests.get(
-            self.bing_search_url,
+        response = safe_requests.get(self.bing_search_url,
             headers=headers,
             params=params,  # type: ignore
         )

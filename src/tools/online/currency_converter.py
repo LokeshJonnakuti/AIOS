@@ -1,14 +1,9 @@
 from src.tools.base import BaseRapidAPITool
 
-from typing import Any, Dict, List, Optional
-
 # from pydantic import root_validator
 
 from src.utils.utils import get_from_env
-
-import requests
-
-import os
+from security import safe_requests
 
 class CurrencyConverterAPI(BaseRapidAPITool):
     def __init__(self):
@@ -36,7 +31,7 @@ class CurrencyConverterAPI(BaseRapidAPITool):
 
         # print(self.query_string)
 
-        response = requests.get(self.url, headers=headers, params=self.query_string).json()
+        response = safe_requests.get(self.url, headers=headers, params=self.query_string).json()
 
         result = self.parse_result(response)
         return result
