@@ -32,7 +32,7 @@ class WordsAPI(BaseRapidAPITool):
             )
         self.url = os.path.join(self.url, self.word, self.api_name)
 
-        response = requests.get(self.url, headers=headers).json()
+        response = requests.get(self.url, headers=headers, timeout=60).json()
         result = self.parse_result(response)
         return result
 
